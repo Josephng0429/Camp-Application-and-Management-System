@@ -94,6 +94,10 @@ public class CampInfo {
 	public String getDescription() {
 		return description;
 	}
+
+	public int getTotalSlots(){
+		return numCommitteeSlots + numAttendeeSlots;
+	}
 	
 	public void setDescription(String description) {
 		this.description = description;

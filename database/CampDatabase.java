@@ -4,7 +4,6 @@ import camp.*;
 import user.*;
 import utils.CsvAdapter;
 import java.util.ArrayList;
-import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -14,6 +13,13 @@ public class CampDatabase {
 	private static CsvAdapter csvAdapter = CsvAdapter.getInstance();
 	private static UserDatabase userDatabase = UserDatabase.getInstance();
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+
+	public static CampDatabase getInstance() {
+		if (single_instance == null) {
+			single_instance = new CampDatabase();
+		}
+		return single_instance;
+	}
 
 	private CampDatabase() {
 		// Initialize Camps
@@ -46,8 +52,8 @@ public class CampDatabase {
 		}
 		ArrayList<ArrayList<String>> allCampMembers = csvAdapter.readCSVasArray("./member_list.csv");
 		for (ArrayList<String> memberDetails : allCampMembers) {
-			String memberName = memberDetails.get(0);
-			Student student = (Student) userDatabase.getUserByID(memberName);
+			String memberID = memberDetails.get(0);
+			Student student = (Student) userDatabase.getUserByID(memberID);
 			String campName = memberDetails.get(1);
 			Camp camp = getCampByName(campName);
 			String memberRole = memberDetails.get(2);
@@ -80,14 +86,14 @@ public class CampDatabase {
 			// To store member details
 			for (User attendee : camp.getAttendeeList()) {
 				ArrayList<String> memberDetails = new ArrayList<String>();
-				memberDetails.add(attendee.getName());
+				memberDetails.add(attendee.getUserID());
 				memberDetails.add(campInfo.getCampName());
 				memberDetails.add("attendee");
 				allCampMembers.add(memberDetails);
 			}
 			for (User attendee : camp.getCommitteeList()) {
 				ArrayList<String> memberDetails = new ArrayList<String>();
-				memberDetails.add(attendee.getName());
+				memberDetails.add(attendee.getUserID());
 				memberDetails.add(campInfo.getCampName());
 				memberDetails.add("committee");
 				allCampMembers.add(memberDetails);
@@ -128,10 +134,4 @@ public class CampDatabase {
 		return null;
 	}
 
-	public static CampDatabase getInstance() {
-		if (single_instance == null) {
-			single_instance = new CampDatabase();
-		}
-		return single_instance;
-	}
 }

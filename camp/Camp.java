@@ -1,4 +1,5 @@
 package camp;
+
 import user.*;
 import enquiry.Enquiry;
 import java.util.*;
@@ -7,7 +8,7 @@ public class Camp {
 	private CampInfo campInfo;
 	private ArrayList<Student> attendeeList;
 	private ArrayList<Student> committeeList;
-	private int numStudents = 0;
+	private int numAttendee = 0;
 	private int numCommittee = 0;
 	private boolean visible = true;
 	private ArrayList<Enquiry> enquiryList;
@@ -18,17 +19,16 @@ public class Camp {
 		this.committeeList = new ArrayList<>();
 		this.enquiryList = new ArrayList<>();
 	}
-	
-	public Camp(CampInfo campInfo, int numStudents, int numCommittee, int visible) {
+
+	public Camp(CampInfo campInfo, int numAttendee, int numCommittee, int visible) {
 		this.campInfo = campInfo;
 		this.attendeeList = new ArrayList<>();
 		this.committeeList = new ArrayList<>();
 		this.enquiryList = new ArrayList<>();
-		this.numStudents = numStudents;
+		this.numAttendee = numAttendee;
 		this.numCommittee = numCommittee;
 	}
 
-	
 	public CampInfo getCampInfo() {
 		return campInfo;
 	}
@@ -37,55 +37,79 @@ public class Camp {
 		return attendeeList;
 	}
 
-	public boolean addAttendee(Student student){
-		if(numCommittee == this.campInfo.getNumAttendeeSlots()){
+	public boolean addAttendee(Student student) {
+		if (numAttendee == this.campInfo.getNumAttendeeSlots()) {
 			System.out.println("Attendee slots are full.");
 			return false;
 		}
-		numCommittee += 1;
+		System.out.println("Successfully registered to camp");
+		numAttendee += 1;
 		attendeeList.add(student);
+		student.addCamp(this);
 		return true;
 	}
 
-	public boolean addCommittee(Student student){
-		if(numStudents == this.campInfo.getNumCommitteeSlots())
-		{
+	public boolean withdrawAttendee(Student student) {
+		if (attendeeList.remove(student)) {
+			System.out.println("Successfully removed from camp");
+			numAttendee -= 1;
+			student.removeCamp(this);
+			return true;
+		}
+		System.out.println("Student is not inside this camp");
+		return false;
+	}
+
+	public boolean addCommittee(Student student) {
+		if (numCommittee == this.campInfo.getNumCommitteeSlots()) {
 			System.out.println("Committee slots are full.");
 			return false;
 		}
-		numStudents += 1;
+		System.out.println("Successfully registered as committee");
+		numCommittee += 1;
 		committeeList.add(student);
+		student.setCommitteeCamp(this);
 		return true;
 	}
-	
+
+	public boolean removeCommittee(Student student) {
+		if (committeeList.remove(student)) {
+			System.out.println("Successfully removed from camp");
+			numCommittee -= 1;
+			student.removeCamp(this);
+			return true;
+		}
+		return false;
+	}
+
+	public void addEnquiry(Enquiry enquiry) {
+		enquiryList.add(enquiry);
+	}
+
+	public void removeEnquiry(Enquiry enquiry) {
+		enquiryList.remove(enquiry);
+	}
+
 	public ArrayList<Student> getCommitteeList() {
 		return committeeList;
 	}
-	
-	public int getNumStudents() {
-		return numStudents;
-	}
-	
-	public void setNumStudents(int numStudents) {
-		this.numStudents = numStudents;
-	}
-	
+
 	public int getNumCommittee() {
 		return numCommittee;
 	}
-	
-	public void setNumCommittee(int numCommittee) {
-		this.numCommittee = numCommittee;
+
+	public int getNumAttendee() {
+		return numAttendee;
 	}
-	
+
 	public boolean isVisible() {
 		return visible;
 	}
-	
+
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	
+
 	public ArrayList<Enquiry> getEnquiryList() {
 		return enquiryList;
 	}

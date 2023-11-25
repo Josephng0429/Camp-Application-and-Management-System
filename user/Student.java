@@ -1,76 +1,55 @@
 package user;
+
+import java.util.ArrayList;
 import camp.*;
 import enquiry.*;
+
 public class Student extends User {
+	private ArrayList<Camp> myCamps = new ArrayList<Camp>();
+	private ArrayList<Enquiry> myEnquiries = new ArrayList<Enquiry>();
+	private Camp committeeCamp;
 
-    private Camp committeeCamp;
+	public Student(String name, String password, String email, String faculty) {
+		super(name, password, email, faculty);
+		this.committeeCamp = null;
+	}
 
-    public Student(String name, String password, String email, String faculty) {
-        super(name, password, email, faculty);
-        this.committeeCamp = null;
-    }
+	public void setCommitteeCamp(Camp committeeCamp) {
+		this.committeeCamp = committeeCamp;
+	}
 
-    public void viewCamps(){
+	public Camp getCommitteeCamp() {
+		return this.committeeCamp;
+	}
 
-    }
+	public void addCamp(Camp camp) {
+		myCamps.add(camp);
+	}
 
-    public void viewMyCamps(){
+	public void removeCamp(Camp camp) {
+		myCamps.remove(camp);
+		if (camp == committeeCamp) {
+			committeeCamp = null;
+		}
+	}
 
-    }
+	public void addEnquiry(Enquiry enquiry) {
+		myEnquiries.add(enquiry);
+	}
 
-    public void registerCamp(){
+	public void removeEnquiry(Enquiry enquiry) {
+		myEnquiries.remove(enquiry);
+	}
 
-    }
+	public ArrayList<Enquiry> getEnquiries() {
+		return myEnquiries;
+	}
 
-    public void withdrawCamp(){
+	public void removeCommitteeCamp() {
+		committeeCamp = null;
+	}
 
-    }
-
-    public Enquiry submitEnquiry(){
-        Enquiry enquiry = new Enquiry("test", this);
-        return enquiry;
-    }
-
-    public Camp getCommitteeCamp() {
-        return this.committeeCamp;
-    }
-
-    public void viewEnquiry(){
-
-    }
-
-    public void editEnquiry(){
-
-    }
-
-    public void delEnuiry(){
-
-    }
-
-    public void viewCommitteeEnquiries(){
-
-    }
-
-    public void replyEnquiry(Enquiry enquiry){
-
-    }
-
-    public void createSuggestion(){
-
-    }
-
-    public void editSuggestion(){
-
-    }
-
-    public void delSuggestion(){
-
-    }
-
-    public void generateCampReport(){
-
-    }
-
-
-
+	public ArrayList<Camp> getMyCamps() {
+		return this.myCamps;
+	}
 }
