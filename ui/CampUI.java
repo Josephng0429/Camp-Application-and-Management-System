@@ -35,6 +35,40 @@ public class CampUI {
 		System.out.printf("Description: %s \n", campInfo.getDescription());
 	}
 
+	public void deleteCamp(Camp camp) {
+		if (camp.getNumAttendee() > 0 || camp.getNumCommittee() > 0) {
+			System.out.println("Can't modify camp as people have joined.");
+			return;
+		}
+		CampInfo campInfo = camp.getCampInfo();
+		Staff staff = campInfo.getStaffInCharge();
+		staff.removeCamp(camp);
+		campDatabase.removeCamp(camp);
+		System.out.println("Deleting camp.");
+	}
+
+	public void setCampVisibility(Camp camp) {
+		if (camp.getNumAttendee() > 0 || camp.getNumCommittee() > 0) {
+			System.out.println("Can't modify camp visiblity as people have joined.");
+			return;
+		}
+		System.out.println("Set camp visibility");
+		System.out.println("(1)  Visible");
+		System.out.println("(2)  Hidden");
+		int input = scanner.nextInt();
+		switch (input) {
+			case 1:
+				camp.setVisible(true);
+				break;
+			case 2:
+				camp.setVisible(false);
+				break;
+			default:
+				System.out.println("Invalid option.");
+				break;
+		}
+	}
+
 	public Camp createCamp(Staff currentStaff) {
 		LocalDate campStartDate, campEndDate, campClosingDate;
 		String campName;
@@ -55,7 +89,7 @@ public class CampUI {
 			System.out.println("For the camp end date");
 			campEndDate = scanner.nextLocalDate();
 			if (campEndDate.isBefore(campStartDate))
-				System.out.println("Camp end date must be before the camp start date");
+				System.out.println("Camp end date must be after the camp start date");
 			else
 				break;
 		}
@@ -106,8 +140,95 @@ public class CampUI {
 		return new Camp(newCampInfo);
 	}
 
+	public void editCamp(Camp camp) {
+		if (camp.getNumAttendee() > 0 || camp.getNumCommittee() > 0) {
+			System.out.println("Can't modify camp as people have joined.");
+			return;
+		}
+		System.out.println("------------------");
+		System.out.println(" Edit Options: ");
+		System.out.println("------------------");
+		System.out.println("(1)  Change camp name");
+		System.out.println("(2)  Change camp start date");
+		System.out.println("(3)  Change camp end date");
+		System.out.println("(4)  Change camp closing date");
+		System.out.println("(5)  Change camp faculty");
+		System.out.println("(6)  Change camp location");
+		System.out.println("(7)  Change camp total slots");
+		System.out.println("(8)  Change camp committee slots");
+		System.out.println("(9)  Change camp description");
+		System.out.println("(0) Exit without making changes");
+		int input = scanner.nextInt();
+		CampInfo campInfo = camp.getCampInfo();
+		switch (input) {
+			case 1:
+				System.out.println("Input camp name");
+				String campName = scanner.nextLine();
+				campInfo.setCampName(campName);
+				break;
+			case 2:
+				System.out.println("Input start date:");
+				LocalDate startDate = scanner.nextLocalDate();
+				campInfo.setStartDate(startDate);
+				break;
+			case 3:
+				System.out.println("Input end date:");
+				LocalDate endDate = scanner.nextLocalDate();
+				campInfo.setEndDate(endDate);
+				break;
+			case 4:
+				System.out.println("Input registration closing date:");
+				LocalDate closingDate = scanner.nextLocalDate();
+				campInfo.setRegCloseDate(closingDate);
+				break;
+			case 5:
+				System.out.print("Input new faculty");
+				String faculty = scanner.nextLine();
+				campInfo.setCampFaculty(faculty);
+				break;
+			case 6:
+				System.out.print("Input new location");
+				String location = scanner.nextLine();
+				campInfo.setLocation(location);
+				break;
+			case 7:
+				System.out.print("Input new total slots");
+				int newTotalSlots = scanner.nextInt();
+				int committeeSlots = campInfo.getNumCommitteeSlots();
+				if (committeeSlots >= newTotalSlots)
+					System.out.println("Committee slots should be lesser than total slots");
+				else {
+					campInfo.setNumAttendeeSlots(newTotalSlots - committeeSlots);
+				}
+				break;
+			case 8:
+				System.out.print("Input new committee slots");
+				int newCommitteeSlots = scanner.nextInt();
+				int totalSlots = campInfo.getNumCommitteeSlots() + campInfo.getNumAttendeeSlots();
+				if (newCommitteeSlots >= totalSlots)
+					System.out.println("Committee slots should be lesser than total slots");
+				else {
+					campInfo.setNumAttendeeSlots(totalSlots - newCommitteeSlots);
+				}
+				break;
+			case 9:
+				System.out.print("Input new description");
+				String description = scanner.nextLine();
+				campInfo.setDescription(description);
+				break;
+			case 0:
+				break;
+			default:
+				System.out.println("Invalid option");
+				break;
+		}
+	}
+
 	public void viewCampList(ArrayList<Camp> campList) {
+		int index = 0;
 		for (Camp camp : campList) {
+			index++;
+			System.out.printf("--------------\nCamp number %d:\n--------------\n", index);
 			viewCamp(camp);
 		}
 	}
@@ -116,7 +237,7 @@ public class CampUI {
 		int index = 0;
 		for (Camp camp : camps) {
 			index++;
-			System.out.printf("---------\nChoice %d:\n---------\n", index);
+			System.out.printf("--------------\nChoice %d:\n--------------\n", index);
 			viewCamp(camp);
 		}
 		int input = 0;

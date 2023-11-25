@@ -23,6 +23,10 @@ public class CampDatabase {
 
 	private CampDatabase() {
 		// Initialize Camps
+		loadDatabase();
+	}
+
+	public void loadDatabase() {
 		ArrayList<ArrayList<String>> campDetails = csvAdapter.readCSVasArray("./camp_list.csv");
 		for (ArrayList<String> campDetail : campDetails) {
 			String name = campDetail.get(0);
@@ -107,6 +111,10 @@ public class CampDatabase {
 
 	public void addCamp(Camp camp) {
 		campList.add(camp);
+	}
+
+	public void removeCamp(Camp camp) {
+		campList.remove(camp);
 	}
 
 	public ArrayList<Camp> getAllCamps() {

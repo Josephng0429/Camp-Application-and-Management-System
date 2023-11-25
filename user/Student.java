@@ -3,11 +3,14 @@ package user;
 import java.util.ArrayList;
 import camp.*;
 import enquiry.*;
+import suggestion.Suggestion;
 
 public class Student extends User {
 	private ArrayList<Camp> myCamps = new ArrayList<Camp>();
 	private ArrayList<Enquiry> myEnquiries = new ArrayList<Enquiry>();
+	private ArrayList<Suggestion> mySuggestions = new ArrayList<Suggestion>();
 	private Camp committeeCamp;
+	private int point = 0;
 
 	public Student(String name, String password, String email, String faculty) {
 		super(name, password, email, faculty);
@@ -28,9 +31,6 @@ public class Student extends User {
 
 	public void removeCamp(Camp camp) {
 		myCamps.remove(camp);
-		if (camp == committeeCamp) {
-			committeeCamp = null;
-		}
 	}
 
 	public void addEnquiry(Enquiry enquiry) {
@@ -41,12 +41,20 @@ public class Student extends User {
 		myEnquiries.remove(enquiry);
 	}
 
-	public ArrayList<Enquiry> getEnquiries() {
-		return myEnquiries;
+	public ArrayList<Suggestion> getSuggestions() {
+		return mySuggestions;
 	}
 
-	public void removeCommitteeCamp() {
-		committeeCamp = null;
+	public void addSuggestion(Suggestion suggestion) {
+		mySuggestions.add(suggestion);
+	}
+
+	public void removeSuggestion(Suggestion suggestion) {
+		mySuggestions.remove(suggestion);
+	}
+
+	public ArrayList<Enquiry> getEnquiries() {
+		return myEnquiries;
 	}
 
 	public ArrayList<Camp> getMyCamps() {

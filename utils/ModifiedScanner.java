@@ -40,7 +40,7 @@ public class ModifiedScanner {
 			System.out.println("Enter day:");
 			day = scanner.nextInt();
 			scanner.nextLine(); // consumes empty line after nextInt
-			if (day < 0 || day > 31) {
+			if (day < 1 || day > 31) {
 				System.out.println("Invalid day");
 			} else
 				break;

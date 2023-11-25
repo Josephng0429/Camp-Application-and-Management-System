@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import camp.Camp;
 import database.CampDatabase;
 import database.EnquiryDatabase;
-import database.UserDatabase;
+import database.SuggestionDatabase;
 import enquiry.Enquiry;
+import suggestion.Suggestion;
 import user.Student;
 import utils.ModifiedScanner;
 
@@ -14,10 +15,11 @@ public class StudentUI {
 	private static StudentUI studentUI = new StudentUI();
 	private static CampUI campUI = CampUI.getInstance();
 	private static EnquiryUI enquiryUI = EnquiryUI.getInstance();
+	private static SuggestionUI suggestionUI = SuggestionUI.getInstance();
 	private static ModifiedScanner scanner = ModifiedScanner.getInstance();
-	private static UserDatabase userDatabase = UserDatabase.getInstance();
 	private static CampDatabase campDatabase = CampDatabase.getInstance();
 	private static EnquiryDatabase enquiryDatabase = EnquiryDatabase.getInstance();
+	private static SuggestionDatabase suggestionDatabase = SuggestionDatabase.getInstance();
 
 	private StudentUI() {
 
@@ -56,6 +58,9 @@ public class StudentUI {
 	}
 
 	public void changePassword(Student currentStudent) {
+		System.out.println("-----------------");
+		System.out.println("Changing password");
+		System.out.println("-----------------");
 		System.out.print("Enter new password: ");
 
 		String newPassword;
@@ -70,15 +75,22 @@ public class StudentUI {
 				newPassword = scanner.nextLine();
 			}
 		}
+		System.out.println("Password change successfully!");
 	}
 
 	public void viewVisibleCamps(Student currentStudent) {
+		System.out.println("---------------------------");
+		System.out.println("Showing all available camps");
+		System.out.println("---------------------------");
 		String studentFaculty = currentStudent.getFaculty();
 		ArrayList<Camp> visibleCamps = campDatabase.getVisibleCamps(studentFaculty);
 		campUI.viewCampList(visibleCamps);
 	}
 
 	public void viewRegisteredCamps(Student currentStudent) {
+		System.out.println("----------------------------");
+		System.out.println("Showing all registered camps");
+		System.out.println("----------------------------");
 		campUI.viewCampList(currentStudent.getMyCamps());
 	}
 
@@ -88,7 +100,42 @@ public class StudentUI {
 		enquiryUI.viewEnquiryList(enquiryList);
 	}
 
+	public void submitSuggestion(Student currentStudent) {
+		Camp camp = currentStudent.getCommitteeCamp();
+		Suggestion suggestion = suggestionUI.createSuggestion(currentStudent, camp);
+		System.out.print(suggestion);
+		currentStudent.addSuggestion(suggestion);
+		camp.addSuggestion(suggestion);
+		suggestionDatabase.addSuggestion(suggestion);
+	}
+
+	public void editSuggestion(Student currentStudent) {
+		ArrayList<Suggestion> mySuggestions = currentStudent.getSuggestions();
+
+		Suggestion selectedSuggestion;
+		if ((selectedSuggestion = suggestionUI.chooseSuggestion(mySuggestions)) == null)
+			return;
+		suggestionUI.editSuggestion(selectedSuggestion);
+	}
+
+	public void deleteSuggestion(Student currentStudent) {
+		ArrayList<Suggestion> mySuggestions = currentStudent.getSuggestions();
+
+		Suggestion selectedSuggestion;
+		if ((selectedSuggestion = suggestionUI.chooseSuggestion(mySuggestions)) == null)
+			return;
+		suggestionUI.deleteSuggestion(selectedSuggestion);
+	}
+
+	public void viewSuggestions(Student currentStudent) {
+		ArrayList<Suggestion> mySuggestions = currentStudent.getSuggestions();
+		suggestionUI.viewSuggestionList(mySuggestions);
+	}
+
 	public void registerForCamp(Student currentStudent) {
+		System.out.println("------------------------------");
+		System.out.println("Choose a camp for registration");
+		System.out.println("------------------------------");
 		String studentFaculty = currentStudent.getFaculty();
 		ArrayList<Camp> visibleCamps = campDatabase.getVisibleCamps(studentFaculty);
 		Camp selectedCamp;
@@ -180,6 +227,14 @@ public class StudentUI {
 		enquiryUI.viewEnquiryList(currentStudent.getEnquiries());
 	}
 
+	public void replyCommitteeEnquiries(Student currentStudent) {
+		ArrayList<Enquiry> committeeEnquiries = currentStudent.getCommitteeCamp().getEnquiryList();
+		Enquiry selectedEnquiry;
+		if ((selectedEnquiry = enquiryUI.chooseEnquiry(committeeEnquiries)) == null)
+			return;
+		enquiryUI.replyEnquiry(selectedEnquiry, currentStudent);
+	}
+
 	public void menu(Student currentStudent) {
 		boolean cont = true;
 		int input;
@@ -227,10 +282,28 @@ public class StudentUI {
 				case 11:
 					viewCommitteeEnquiries(currentStudent);
 					break;
+				case 12:
+					replyCommitteeEnquiries(currentStudent);
+					break;
+				case 13:
+					submitSuggestion(currentStudent);
+					break;
+				case 14:
+					editSuggestion(currentStudent);
+					break;
+				case 15:
+					deleteSuggestion(currentStudent);
+					break;
+				case 16:
+					viewSuggestions(currentStudent);
+					break;
 				default:
 					System.out.println("Invalid option. Try again.");
 					break;
 			}
+			System.out.println("---------------------------");
+			System.out.println("Press any key to continue");
+			scanner.nextLine();
 		}
 	}
 }

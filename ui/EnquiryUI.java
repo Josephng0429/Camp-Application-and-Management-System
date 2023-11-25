@@ -69,7 +69,7 @@ public class EnquiryUI {
 			}
 		}
 		Enquiry selectedEnquiry = enquiries.get(input - 1);
-		System.out.println("---------\nCamp selected:\n---------");
+		System.out.println("---------\nEnquiry selected:\n---------");
 		viewEnquiry(selectedEnquiry);
 		return selectedEnquiry;
 	}
@@ -79,12 +79,24 @@ public class EnquiryUI {
 			System.out.println("Can't delete enquiry it has already been responded to.");
 			return;
 		}
-		System.out.println("Deleting enquiry.");
 		Student student = (Student) enquiry.getSender();
 		Camp camp = enquiry.getCamp();
 		student.removeEnquiry(enquiry);
 		enquiryDatabase.removeEnquiry(enquiry);
 		camp.removeEnquiry(enquiry);
+		System.out.println("Deleted Enquiry");
+	}
+
+	public void replyEnquiry(Enquiry enquiry, User user) {
+		if (enquiry.isReplied()) {
+			System.out.println("Enquiry has already been replied.");
+			return;
+		}
+		System.out.println("Enter your reply:");
+		String reply = scanner.nextLine();
+		enquiry.setReplier(user);
+		enquiry.setReplyBody(reply);
+		enquiry.setReplied(true);
 	}
 
 	public void viewEnquiryList(ArrayList<Enquiry> enquiryList) {

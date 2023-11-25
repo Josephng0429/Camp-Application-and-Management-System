@@ -9,6 +9,7 @@ public class LoginApplication {
 	static UserDatabase userDatabase = UserDatabase.getInstance();
 	static CampDatabase campDatabase = CampDatabase.getInstance();
 	static EnquiryDatabase enquiryDatabase = EnquiryDatabase.getInstance();
+	static SuggestionDatabase suggestionDatabase = SuggestionDatabase.getInstance();
 	static StaffUI staffUI = StaffUI.getInstance();
 	static StudentUI studentUI = StudentUI.getInstance();
 
@@ -36,6 +37,7 @@ public class LoginApplication {
 		userDatabase.saveDatabase();
 		campDatabase.saveDatabase();
 		enquiryDatabase.saveDatabase();
+		suggestionDatabase.saveDatabase();
 
 	}
 

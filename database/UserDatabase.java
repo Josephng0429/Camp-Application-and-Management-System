@@ -17,6 +17,10 @@ public class UserDatabase {
 	}
 
 	private UserDatabase() {
+		loadDatabase();
+	}
+
+	public void loadDatabase() {
 		ArrayList<ArrayList<String>> studentList = csvAdapter.readCSVasArray("./student_list.csv");
 		ArrayList<ArrayList<String>> staffList = csvAdapter.readCSVasArray("./staff_list.csv");
 		for (ArrayList<String> user : studentList) {
@@ -54,9 +58,5 @@ public class UserDatabase {
 			}
 		}
 		return null;
-	}
-
-	public ArrayList<User> getStudents() {
-		return userList;
 	}
 }

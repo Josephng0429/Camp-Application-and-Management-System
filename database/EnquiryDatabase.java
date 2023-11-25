@@ -24,6 +24,10 @@ public class EnquiryDatabase {
 	}
 
 	private EnquiryDatabase() {
+		loadDatabase();
+	}
+
+	public void loadDatabase() {
 		ArrayList<ArrayList<String>> enquiryDetails = csvAdapter.readCSVasArray("./enquiry_list.csv");
 		for (ArrayList<String> enquiryDetail : enquiryDetails) {
 			Enquiry enquiry;

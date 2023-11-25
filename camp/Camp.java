@@ -2,6 +2,8 @@ package camp;
 
 import user.*;
 import enquiry.Enquiry;
+import suggestion.Suggestion;
+
 import java.util.*;
 
 public class Camp {
@@ -11,7 +13,8 @@ public class Camp {
 	private int numAttendee = 0;
 	private int numCommittee = 0;
 	private boolean visible = true;
-	private ArrayList<Enquiry> enquiryList;
+	private ArrayList<Enquiry> enquiryList = new ArrayList<Enquiry>();
+	private ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
 
 	public Camp(CampInfo campInfo) {
 		this.campInfo = campInfo;
@@ -42,7 +45,6 @@ public class Camp {
 			System.out.println("Attendee slots are full.");
 			return false;
 		}
-		System.out.println("Successfully registered to camp");
 		numAttendee += 1;
 		attendeeList.add(student);
 		student.addCamp(this);
@@ -51,7 +53,6 @@ public class Camp {
 
 	public boolean withdrawAttendee(Student student) {
 		if (attendeeList.remove(student)) {
-			System.out.println("Successfully removed from camp");
 			numAttendee -= 1;
 			student.removeCamp(this);
 			return true;
@@ -65,21 +66,10 @@ public class Camp {
 			System.out.println("Committee slots are full.");
 			return false;
 		}
-		System.out.println("Successfully registered as committee");
 		numCommittee += 1;
 		committeeList.add(student);
 		student.setCommitteeCamp(this);
 		return true;
-	}
-
-	public boolean removeCommittee(Student student) {
-		if (committeeList.remove(student)) {
-			System.out.println("Successfully removed from camp");
-			numCommittee -= 1;
-			student.removeCamp(this);
-			return true;
-		}
-		return false;
 	}
 
 	public void addEnquiry(Enquiry enquiry) {
@@ -88,6 +78,18 @@ public class Camp {
 
 	public void removeEnquiry(Enquiry enquiry) {
 		enquiryList.remove(enquiry);
+	}
+
+	public void addSuggestion(Suggestion suggestion) {
+		suggestionList.add(suggestion);
+	}
+
+	public void removeSuggestion(Suggestion suggestion) {
+		suggestionList.remove(suggestion);
+	}
+
+	public ArrayList<Suggestion> getSuggestions() {
+		return this.suggestionList;
 	}
 
 	public ArrayList<Student> getCommitteeList() {
