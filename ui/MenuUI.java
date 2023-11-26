@@ -27,21 +27,25 @@ public class MenuUI {
 		UserCommands userCommands = new UserCommands();
 		StaffCampCommands staffCampCommands = new StaffCampCommands();
 		StaffSuggestionCommands staffSuggestionCommands = new StaffSuggestionCommands();
+		StaffReportCommands staffReportCommands = new StaffReportCommands();
 		StudentCampCommands studentCampCommands = new StudentCampCommands();
 		StudentEnquiryCommands studentEnquiryCommands = new StudentEnquiryCommands();
 		CommitteeSuggestionCommands committeeSuggestionCommands = new CommitteeSuggestionCommands();
 		OrganizerEnquiryCommands organizerEnquiryCommands = new OrganizerEnquiryCommands();
+		OrganizerReportCommands organizerReportCommands = new OrganizerReportCommands();
 		ArrayList<ICommand> commandList = new ArrayList<ICommand>();
 		commandList.addAll(userCommands.getCommands());
 		if (user instanceof Staff) {
 			commandList.addAll(staffCampCommands.getCommands());
 			commandList.addAll(staffSuggestionCommands.getCommands());
+			commandList.addAll(organizerEnquiryCommands.getCommands());
+			commandList.addAll(organizerReportCommands.getCommands());
+			commandList.addAll(staffReportCommands.getCommands());
 		}
 		if (user instanceof Student) {
-			Student student = (Student) user;
 			commandList.addAll(studentCampCommands.getCommands());
 			commandList.addAll(studentEnquiryCommands.getCommands());
-			if (student.getCommitteeCamp() != null) {
+			if (user.getOrganizingCamp() != null) {
 				commandList.addAll(committeeSuggestionCommands.getCommands());
 				commandList.addAll(organizerEnquiryCommands.getCommands());
 			}

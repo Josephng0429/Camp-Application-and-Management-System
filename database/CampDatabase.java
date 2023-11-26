@@ -52,7 +52,7 @@ public class CampDatabase {
 					staffInCharge);
 			Camp newCamp = new Camp(newCampInfo);
 			campList.add(newCamp);
-			staffInCharge.addCamp(newCamp);
+			staffInCharge.setOrganizingCamp(newCamp);
 		}
 		ArrayList<ArrayList<String>> allCampMembers = csvAdapter.readCSVasArray("./member_list.csv");
 		for (ArrayList<String> memberDetails : allCampMembers) {

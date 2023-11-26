@@ -32,7 +32,7 @@ public class StaffCampCommands implements ICommandPackage {
 		public void execute(User user) {
 			Staff currentStaff = (Staff) user;
 			Camp newCamp = campUI.createCamp(currentStaff);
-			currentStaff.addCamp(newCamp);
+			currentStaff.setOrganizingCamp(newCamp);
 			campDatabase.addCamp(newCamp);
 			System.out.println("Added new camp");
 		}
@@ -45,9 +45,8 @@ public class StaffCampCommands implements ICommandPackage {
 		}
 
 		public void execute(User user) {
-			Staff currentStaff = (Staff) user;
-			ArrayList<Camp> myCamps = currentStaff.getMyCamps();
-			campUI.viewCampList(myCamps);
+			Camp myCamp = user.getOrganizingCamp();
+			campUI.viewCamp(myCamp);
 		}
 	}
 
@@ -70,11 +69,8 @@ public class StaffCampCommands implements ICommandPackage {
 
 		public void execute(User user) {
 			Staff currentStaff = (Staff) user;
-			ArrayList<Camp> myCamps = currentStaff.getMyCamps();
-			Camp selectedCamp;
-			if ((selectedCamp = campUI.chooseCamp(myCamps)) == null)
-				return;
-			campUI.editCamp(selectedCamp);
+			Camp camp = currentStaff.getOrganizingCamp();
+			campUI.editCamp(camp);
 
 		}
 	}
@@ -86,12 +82,15 @@ public class StaffCampCommands implements ICommandPackage {
 		}
 
 		public void execute(User user) {
-			Staff currentStaff = (Staff) user;
-			ArrayList<Camp> myCamps = currentStaff.getMyCamps();
-			Camp selectedCamp;
-			if ((selectedCamp = campUI.chooseCamp(myCamps)) == null)
+			Staff staff = (Staff) user;
+			Camp camp = user.getOrganizingCamp();
+			if (camp.getNumAttendee() > 0 || camp.getNumCommittee() > 0) {
+				System.out.println("Can't delete camp as people have joined.");
 				return;
-			campUI.deleteCamp(selectedCamp);
+			}
+			staff.removeOrganizingCamp();
+			campDatabase.removeCamp(camp);
+			System.out.println("Deleting camp.");
 
 		}
 	}
@@ -102,12 +101,8 @@ public class StaffCampCommands implements ICommandPackage {
 		}
 
 		public void execute(User user) {
-			Staff currentStaff = (Staff) user;
-			ArrayList<Camp> myCamps = currentStaff.getMyCamps();
-			Camp selectedCamp;
-			if ((selectedCamp = campUI.chooseCamp(myCamps)) == null)
-				return;
-			campUI.setCampVisibility(selectedCamp);
+			Camp myCamp = user.getOrganizingCamp();
+			campUI.setCampVisibility(myCamp);
 		}
 	}
 }

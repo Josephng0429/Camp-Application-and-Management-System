@@ -1,0 +1,183 @@
+Camp details:
+---------------------------------------------
+Camp Name: 123
+Camp Start Date: 03/12/13
+Camp End Date: 05/05/00
+Registration Closing Date: 05/05/05
+Camp Faculty: all
+Camp Location: here
+Attendee Slots: 2/113
+Committee Slots: 0/10 
+
+Description: 123123123 
+
+---------------------------------------------
+Student details:
+---------------------------------------------
+Student Name : CHERN
+Student Role : Attendee
+---------------------------------------------
+Student details:
+---------------------------------------------
+Student Name : CHERN
+Student Role : Attendee
+---------------------------------------------
+Camp details:
+---------------------------------------------
+Camp Name: 123
+Camp Start Date: 03/12/13
+Camp End Date: 05/05/00
+Registration Closing Date: 05/05/05
+Camp Faculty: all
+Camp Location: here
+Attendee Slots: 2/113
+Committee Slots: 0/10 
+
+Description: 123123123 
+
+---------------------------------------------
+Attendee List
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+Committee List
+Camp details:
+---------------------------------------------
+Camp Name: 123
+Camp Start Date: 03/12/13
+Camp End Date: 05/05/00
+Registration Closing Date: 05/05/05
+Camp Faculty: all
+Camp Location: here
+Attendee Slots: 2/113
+Committee Slots: 0/10 
+
+Description: 123123123 
+
+---------------------------------------------
+Attendee List
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+Committee List
+Camp details:
+---------------------------------------------
+Camp Name: 123
+Camp Start Date: 03/12/13
+Camp End Date: 05/05/00
+Registration Closing Date: 05/05/05
+Camp Faculty: all
+Camp Location: here
+Attendee Slots: 2/113
+Committee Slots: 0/10 
+
+Description: 123123123 
+
+---------------------------------------------
+Attendee List
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+Committee List
+Camp details:
+---------------------------------------------
+Camp Name: 123
+Camp Start Date: 03/12/13
+Camp End Date: 05/05/00
+Registration Closing Date: 05/05/05
+Camp Faculty: all
+Camp Location: here
+Attendee Slots: 2/113
+Committee Slots: 0/10 
+
+Description: 123123123 
+
+---------------------------------------------
+Attendee List
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+Committee List
+Camp details:
+---------------------------------------------
+Camp Name: 123
+Camp Start Date: 03/12/13
+Camp End Date: 05/05/00
+Registration Closing Date: 05/05/05
+Camp Faculty: all
+Camp Location: here
+Attendee Slots: 2/113
+Committee Slots: 0/10 
+
+Description: 123123123 
+
+---------------------------------------------
+Committee List
+Camp details:
+---------------------------------------------
+Camp Name: 123
+Camp Start Date: 03/12/13
+Camp End Date: 05/05/00
+Registration Closing Date: 05/05/05
+Camp Faculty: all
+Camp Location: here
+Attendee Slots: 2/113
+Committee Slots: 0/10 
+
+Description: 123123123 
+
+---------------------------------------------
+Attendee List
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+Committee List
+Camp details:
+---------------------------------------------
+Camp Name: 123
+Camp Start Date: 03/12/13
+Camp End Date: 05/05/00
+Registration Closing Date: 05/05/05
+Camp Faculty: all
+Camp Location: here
+Attendee Slots: 2/113
+Committee Slots: 0/10 
+
+Description: 123123123 
+
+---------------------------------------------
+Attendee List
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+---------------------------------------------
+Student Name : CHERN
+Student Faculty : SCSE
+---------------------------------------------
+Committee List

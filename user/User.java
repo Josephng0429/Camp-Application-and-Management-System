@@ -1,49 +1,50 @@
 package user;
-public class User {
-    private String name, email, faculty, userID, password;
 
-    public User(String name, String password, String email, String faculty) {
-        this.name = name;
-        this.email = email;
-        this.faculty = faculty;
-        this.password = password;
+public abstract class User implements IOrganizesCamp {
+	private String name, email, faculty, userID, password;
 
-        //extract all characters before '@' and set userID to it
-        if (!this.email.isEmpty()) {
-            int atIndex = this.email.indexOf('@');
-            this.userID = this.email.substring(0, atIndex);
-        }
-    }
+	public User(String name, String password, String email, String faculty) {
+		this.name = name;
+		this.email = email;
+		this.faculty = faculty;
+		this.password = password;
 
-    public boolean validPassword(String password){
-        if(this.password.equals(password))
-            return true;
-        else
-            return false;
-    }
+		// extract all characters before '@' and set userID to it
+		if (!this.email.isEmpty()) {
+			int atIndex = this.email.indexOf('@');
+			this.userID = this.email.substring(0, atIndex);
+		}
+	}
 
-    public String getName() {
-        return this.name;
-    }
+	public boolean validPassword(String password) {
+		if (this.password.equals(password))
+			return true;
+		else
+			return false;
+	}
 
-    public String getEmail() {
-        return this.email;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public String getFaculty() {
-        return this.faculty;
-    }
+	public String getEmail() {
+		return this.email;
+	}
 
-    public String getUserID() {
-        return this.userID;
-    }
+	public String getFaculty() {
+		return this.faculty;
+	}
 
-    public String getPassword() {
-        return this.password;
-    }
+	public String getUserID() {
+		return this.userID;
+	}
 
-    public void setPassword(String newPassword) {
-        this.password = newPassword;
-    }
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String newPassword) {
+		this.password = newPassword;
+	}
 
 }

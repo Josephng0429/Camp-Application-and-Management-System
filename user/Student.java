@@ -6,18 +6,18 @@ import camp.*;
 public class Student extends User {
 	private ArrayList<Camp> myCamps = new ArrayList<Camp>();
 	private Camp committeeCamp;
-	private int point = 0;
+	private int points = 0;
 
 	public Student(String name, String password, String email, String faculty) {
 		super(name, password, email, faculty);
 		this.committeeCamp = null;
 	}
 
-	public void setCommitteeCamp(Camp committeeCamp) {
+	public void setOrganizingCamp(Camp committeeCamp) {
 		this.committeeCamp = committeeCamp;
 	}
 
-	public Camp getCommitteeCamp() {
+	public Camp getOrganizingCamp() {
 		return this.committeeCamp;
 	}
 
@@ -27,6 +27,10 @@ public class Student extends User {
 
 	public void removeCamp(Camp camp) {
 		myCamps.remove(camp);
+	}
+
+	public int getPoints() {
+		return points;
 	}
 
 	public ArrayList<Camp> getMyCamps() {

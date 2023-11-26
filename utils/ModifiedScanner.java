@@ -1,17 +1,26 @@
 package utils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class ModifiedScanner {
 	private static ModifiedScanner modifiedScanner = new ModifiedScanner();
 	private static Scanner scanner = new Scanner(System.in);
+	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
 
 	private ModifiedScanner() {
 	}
 
 	public int nextInt() {
-		int result = scanner.nextInt();
+		int result = 0;
+		try {
+			result = scanner.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Invalid input. Enter an integer");
+		}
 		scanner.nextLine(); // consumes empty line after nextInt
 		return result;
 	}
@@ -25,27 +34,18 @@ public class ModifiedScanner {
 	}
 
 	public LocalDate nextLocalDate() {
-		System.out.println("Enter year:");
-		int year, month, day;
-		year = scanner.nextInt();
+		System.out.print("Enter date (dd/mm/yy): ");
 		while (true) {
-			System.out.println("Enter month:");
-			month = scanner.nextInt();
-			if (month < 0 || month > 12) {
-				System.out.println("Invalid month");
-			} else
-				break;
+			String input = nextLine();
+			LocalDate localDate;
+			try {
+				localDate = LocalDate.parse(input, formatter);
+				return localDate;
+			} catch (DateTimeParseException e) {
+				System.out.println("Invalid date format");
+				System.out.print("Enter date (dd/mm/yy): ");
+			}
 		}
-		while (true) {
-			System.out.println("Enter day:");
-			day = scanner.nextInt();
-			scanner.nextLine(); // consumes empty line after nextInt
-			if (day < 1 || day > 31) {
-				System.out.println("Invalid day");
-			} else
-				break;
-		}
-		return LocalDate.of(year, month, day);
 	}
 
 	public static ModifiedScanner getInstance() {

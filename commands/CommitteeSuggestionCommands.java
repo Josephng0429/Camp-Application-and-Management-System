@@ -29,9 +29,8 @@ public class CommitteeSuggestionCommands implements ICommandPackage {
 		}
 
 		public void execute(User user) {
-			Student currentStudent = (Student) user;
-			Camp camp = currentStudent.getCommitteeCamp();
-			Suggestion suggestion = suggestionUI.createSuggestion(currentStudent, camp);
+			Camp camp = user.getOrganizingCamp();
+			Suggestion suggestion = suggestionUI.createSuggestion(user, camp);
 			System.out.print(suggestion);
 			suggestionDatabase.addSuggestion(suggestion);
 

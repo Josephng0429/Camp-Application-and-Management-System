@@ -6,7 +6,6 @@ import camp.Camp;
 import database.EnquiryDatabase;
 import enquiry.Enquiry;
 import ui.EnquiryUI;
-import user.Student;
 import user.User;
 
 public class OrganizerEnquiryCommands implements ICommandPackage {
@@ -26,8 +25,7 @@ public class OrganizerEnquiryCommands implements ICommandPackage {
 		}
 
 		public void execute(User user) {
-			Student currentStudent = (Student) user;
-			Camp committeeCamp = currentStudent.getCommitteeCamp();
+			Camp committeeCamp = user.getOrganizingCamp();
 			ArrayList<Enquiry> enquiryList = enquiryDatabase.getEnquiriesByCamp(committeeCamp);
 			enquiryUI.viewEnquiryList(enquiryList);
 		}
@@ -39,13 +37,12 @@ public class OrganizerEnquiryCommands implements ICommandPackage {
 		}
 
 		public void execute(User user) {
-			Student currentStudent = (Student) user;
-			Camp committeeCamp = currentStudent.getCommitteeCamp();
+			Camp committeeCamp = user.getOrganizingCamp();
 			ArrayList<Enquiry> committeeEnquiries = enquiryDatabase.getEnquiriesByCamp(committeeCamp);
 			Enquiry selectedEnquiry;
 			if ((selectedEnquiry = enquiryUI.chooseEnquiry(committeeEnquiries)) == null)
 				return;
-			enquiryUI.replyEnquiry(selectedEnquiry, currentStudent);
+			enquiryUI.replyEnquiry(selectedEnquiry, user);
 		}
 	}
 }

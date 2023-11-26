@@ -1,7 +1,5 @@
 package commands;
 
-import java.util.ArrayList;
-
 import user.User;
 
 public interface ICommand {

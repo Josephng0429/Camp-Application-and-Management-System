@@ -86,7 +86,7 @@ public class StudentCampCommands implements ICommandPackage {
 						selectedCamp.addAttendee(currentStudent);
 						return;
 					case 2:
-						if (currentStudent.getCommitteeCamp() != null) {
+						if (currentStudent.getOrganizingCamp() != null) {
 							System.out.println("You can only be a committee for one camp");
 						} else
 							selectedCamp.addCommittee(currentStudent);

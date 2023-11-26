@@ -28,12 +28,8 @@ public class StaffSuggestionCommands implements ICommandPackage {
 		}
 
 		public void execute(User user) {
-			Staff currentStaff = (Staff) user;
-			ArrayList<Camp> myCamps = currentStaff.getMyCamps();
-			Camp selectedCamp;
-			if ((selectedCamp = campUI.chooseCamp(myCamps)) == null)
-				return;
-			ArrayList<Suggestion> campSuggestions = suggestionDatabase.getSuggestionByCamp(selectedCamp);
+			Camp myCamp = user.getOrganizingCamp();
+			ArrayList<Suggestion> campSuggestions = suggestionDatabase.getSuggestionByCamp(myCamp);
 			Suggestion selectedSuggestion;
 			if ((selectedSuggestion = suggestionUI.chooseSuggestion(campSuggestions)) == null)
 				return;

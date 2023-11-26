@@ -23,6 +23,10 @@ public class CampUI {
 	}
 
 	public void viewCamp(Camp camp) {
+		if (camp == null) {
+			System.out.println("No camp exists.");
+			return;
+		}
 		CampInfo campInfo = camp.getCampInfo();
 		System.out.printf("Camp name: %s \n", campInfo.getCampName());
 		System.out.printf("Start date: %s \n", campInfo.getStartDate().format(formatter));
@@ -33,18 +37,6 @@ public class CampUI {
 		System.out.printf("Attendee Slots: %d/%d \n", camp.getNumAttendee(), campInfo.getNumAttendeeSlots());
 		System.out.printf("Committee Slots: %d/%d \n", camp.getNumCommittee(), campInfo.getNumCommitteeSlots());
 		System.out.printf("Description: %s \n", campInfo.getDescription());
-	}
-
-	public void deleteCamp(Camp camp) {
-		if (camp.getNumAttendee() > 0 || camp.getNumCommittee() > 0) {
-			System.out.println("Can't modify camp as people have joined.");
-			return;
-		}
-		CampInfo campInfo = camp.getCampInfo();
-		Staff staff = campInfo.getStaffInCharge();
-		staff.removeCamp(camp);
-		campDatabase.removeCamp(camp);
-		System.out.println("Deleting camp.");
 	}
 
 	public void setCampVisibility(Camp camp) {

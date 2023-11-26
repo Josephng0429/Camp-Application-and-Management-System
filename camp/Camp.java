@@ -1,29 +1,23 @@
 package camp;
 
 import user.*;
-import enquiry.Enquiry;
-import suggestion.Suggestion;
 
 import java.util.*;
 
 public class Camp {
 	private CampInfo campInfo;
-	private ArrayList<Student> attendeeList;
-	private ArrayList<Student> committeeList;
+	private ArrayList<Student> attendeeList = new ArrayList<Student>();
+	private ArrayList<Student> committeeList = new ArrayList<Student>();
 	private int numAttendee = 0;
 	private int numCommittee = 0;
 	private boolean visible = true;
 
 	public Camp(CampInfo campInfo) {
 		this.campInfo = campInfo;
-		this.attendeeList = new ArrayList<>();
-		this.committeeList = new ArrayList<>();
 	}
 
 	public Camp(CampInfo campInfo, int numAttendee, int numCommittee, int visible) {
 		this.campInfo = campInfo;
-		this.attendeeList = new ArrayList<>();
-		this.committeeList = new ArrayList<>();
 		this.numAttendee = numAttendee;
 		this.numCommittee = numCommittee;
 	}
@@ -64,7 +58,7 @@ public class Camp {
 		}
 		numCommittee += 1;
 		committeeList.add(student);
-		student.setCommitteeCamp(this);
+		student.setOrganizingCamp(this);
 		return true;
 	}
 
