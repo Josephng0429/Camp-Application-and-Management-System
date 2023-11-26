@@ -51,6 +51,14 @@ public class StudentCampCommands implements ICommandPackage {
 			System.out.println("Showing all registered camps");
 			System.out.println("----------------------------");
 			campUI.viewCampList(currentStudent.getMyCamps());
+			Camp myCamp = user.getOrganizingCamp();
+			if (myCamp != null) {
+				System.out.println("-----------------------");
+				System.out.println("Camp I'm a committee of");
+				System.out.println("-----------------------");
+				campUI.viewCamp(myCamp);
+
+			}
 		}
 	}
 
