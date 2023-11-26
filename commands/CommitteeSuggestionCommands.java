@@ -8,7 +8,6 @@ import suggestion.Suggestion;
 import ui.SuggestionUI;
 import user.Student;
 import user.User;
-import utils.ModifiedScanner;
 
 public class CommitteeSuggestionCommands implements ICommandPackage {
 	private static SuggestionUI suggestionUI = SuggestionUI.getInstance();
@@ -31,8 +30,9 @@ public class CommitteeSuggestionCommands implements ICommandPackage {
 		public void execute(User user) {
 			Camp camp = user.getOrganizingCamp();
 			Suggestion suggestion = suggestionUI.createSuggestion(user, camp);
-			System.out.print(suggestion);
 			suggestionDatabase.addSuggestion(suggestion);
+			Student currentStudent = (Student) user;
+			currentStudent.rewardPoints(1);
 
 		}
 

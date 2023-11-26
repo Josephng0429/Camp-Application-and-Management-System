@@ -6,6 +6,7 @@ import camp.Camp;
 import database.SuggestionDatabase;
 import suggestion.Suggestion;
 import suggestion.Suggestion.Status;
+import user.Student;
 import user.User;
 import utils.ModifiedScanner;
 
@@ -110,6 +111,8 @@ public class SuggestionUI {
 					return;
 				case 1:
 					suggestion.setStatus(Status.APPROVED);
+					Student committeeMember = (Student) suggestion.getSender();
+					committeeMember.rewardPoints(1);
 					return;
 				case 2:
 					suggestion.setStatus(Status.REJECTED);

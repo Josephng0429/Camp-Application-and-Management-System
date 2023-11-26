@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import camp.Camp;
 import database.EnquiryDatabase;
 import enquiry.Enquiry;
+import user.Student;
 import user.User;
 import utils.ModifiedScanner;
 
@@ -96,6 +97,10 @@ public class EnquiryUI {
 		enquiry.setReplier(user);
 		enquiry.setReplyBody(reply);
 		enquiry.setReplied(true);
+		if (user instanceof Student) {
+			Student currentStudent = (Student) user;
+			currentStudent.rewardPoints(1);
+		}
 	}
 
 	public void viewEnquiryList(ArrayList<Enquiry> enquiryList) {

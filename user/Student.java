@@ -13,6 +13,12 @@ public class Student extends User {
 		this.committeeCamp = null;
 	}
 
+	public Student(String name, String password, String email, String faculty, int points) {
+		super(name, password, email, faculty);
+		this.committeeCamp = null;
+		this.points = points;
+	}
+
 	public void setOrganizingCamp(Camp committeeCamp) {
 		this.committeeCamp = committeeCamp;
 	}
@@ -31,6 +37,10 @@ public class Student extends User {
 
 	public int getPoints() {
 		return points;
+	}
+
+	public void rewardPoints(int points) {
+		this.points += points;
 	}
 
 	public ArrayList<Camp> getMyCamps() {

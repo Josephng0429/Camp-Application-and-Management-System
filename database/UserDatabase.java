@@ -23,7 +23,8 @@ public class UserDatabase {
 		ArrayList<ArrayList<String>> studentList = csvAdapter.readCSVasArray("./student_list.csv");
 		ArrayList<ArrayList<String>> staffList = csvAdapter.readCSVasArray("./staff_list.csv");
 		for (ArrayList<String> user : studentList) {
-			User new_user = new Student(user.get(0), user.get(1), user.get(2), user.get(3));
+			User new_user = new Student(user.get(0), user.get(1), user.get(2), user.get(3),
+					Integer.parseInt(user.get(4)));
 			userList.add(new_user);
 		}
 		for (ArrayList<String> user : staffList) {
@@ -41,9 +42,13 @@ public class UserDatabase {
 			userDetails.add(user.getPassword());
 			userDetails.add(user.getEmail());
 			userDetails.add(user.getFaculty());
-			if (user instanceof Student)
+			userDetails.add(user.getFaculty());
+			if (user instanceof Student) {
+				Student student = (Student) user;
+				int points = student.getPoints();
+				userDetails.add(Integer.toString(points));
 				studentList.add(userDetails);
-			else
+			} else
 				staffList.add(userDetails);
 		}
 		csvAdapter.writeCSVfromArray(studentList, "student_list.csv");

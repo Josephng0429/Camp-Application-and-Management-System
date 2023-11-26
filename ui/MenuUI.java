@@ -30,24 +30,24 @@ public class MenuUI {
 		CommitteeSuggestionCommands committeeSuggestionCommands = new CommitteeSuggestionCommands();
 		OrganizerEnquiryCommands organizerEnquiryCommands = new OrganizerEnquiryCommands();
 		OrganizerReportCommands organizerReportCommands = new OrganizerReportCommands();
-		ArrayList<ICommand> commandList = new ArrayList<ICommand>();
-		commandList.addAll(userCommands.getCommands());
-		if (user instanceof Staff) {
-			commandList.addAll(staffCampCommands.getCommands());
-			commandList.addAll(staffSuggestionCommands.getCommands());
-			commandList.addAll(organizerEnquiryCommands.getCommands());
-			commandList.addAll(organizerReportCommands.getCommands());
-			commandList.addAll(staffReportCommands.getCommands());
-		}
-		if (user instanceof Student) {
-			commandList.addAll(studentCampCommands.getCommands());
-			commandList.addAll(studentEnquiryCommands.getCommands());
-			if (user.getOrganizingCamp() != null) {
-				commandList.addAll(committeeSuggestionCommands.getCommands());
-				commandList.addAll(organizerEnquiryCommands.getCommands());
-			}
-		}
 		while (cont) {
+			ArrayList<ICommand> commandList = new ArrayList<ICommand>();
+			commandList.addAll(userCommands.getCommands());
+			if (user instanceof Staff) {
+				commandList.addAll(staffCampCommands.getCommands());
+				commandList.addAll(staffSuggestionCommands.getCommands());
+				commandList.addAll(organizerEnquiryCommands.getCommands());
+				commandList.addAll(organizerReportCommands.getCommands());
+				commandList.addAll(staffReportCommands.getCommands());
+			}
+			if (user instanceof Student) {
+				commandList.addAll(studentCampCommands.getCommands());
+				commandList.addAll(studentEnquiryCommands.getCommands());
+				if (user.getOrganizingCamp() != null) {
+					commandList.addAll(committeeSuggestionCommands.getCommands());
+					commandList.addAll(organizerEnquiryCommands.getCommands());
+				}
+			}
 			int index = 0;
 			System.out.println("~~~~~~~~~~~~~~~~");
 			System.out.println(" Staff Options: ");
