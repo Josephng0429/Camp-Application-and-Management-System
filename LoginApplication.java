@@ -52,7 +52,25 @@ public class LoginApplication {
 				break;
 		}
 		System.out.println("\nLogin successful. Welcome, " + currentUser.getName() + "!");
+		if (currentUser.validPassword("password")) {
+			System.out.println("---------------------------------------");
+			System.out.println("First time user! Please change password");
+			System.out.println("---------------------------------------");
+			System.out.print("Enter new password: ");
+			String newPassword = scanner.nextLine();
+			while (true) {
+				if (!(newPassword.equals(null) || newPassword.length() == 0)) {
+					currentUser.setPassword(newPassword);
+					break;
+				} else {
+					System.out.print("New password cannot be empty! Try again: ");
+					newPassword = scanner.nextLine();
+				}
+			}
+			System.out.println("Password changed succesfully!");
+		}
 		// check if first time login for user, then prompt them to reset password
 		return currentUser;
 	}
+
 }
