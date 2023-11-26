@@ -1,49 +1,21 @@
 Camp details:
 ---------------------------------------------
-Camp Name: 123
-Camp Start Date: 03/12/13
-Camp End Date: 05/05/00
-Registration Closing Date: 05/05/05
+Camp Name: 12
+Camp Start Date: 10/05/20
+Camp End Date: 10/06/20
+Registration Closing Date: 10/04/20
 Camp Faculty: all
-Camp Location: here
-Attendee Slots: 2/113
-Committee Slots: 0/10 
+Camp Location: none
+Attendee Slots: 0/11
+Committee Slots: 1/5 
 
-Description: 123123123 
-
----------------------------------------------
-Attendee List
-Camp details:
----------------------------------------------
-Camp Name: 123
-Camp Start Date: 03/12/13
-Camp End Date: 05/05/00
-Registration Closing Date: 05/05/05
-Camp Faculty: all
-Camp Location: here
-Attendee Slots: 2/113
-Committee Slots: 0/10 
-
-Description: 123123123 
+Description: klsdfjlskdjfklsdf 
 
 ---------------------------------------------
 Committee List
 -----------------
-No commitee members.
-Camp details:
 ---------------------------------------------
-Camp Name: 123
-Camp Start Date: 03/12/13
-Camp End Date: 05/05/00
-Registration Closing Date: 05/05/05
-Camp Faculty: all
-Camp Location: here
-Attendee Slots: 2/113
-Committee Slots: 0/10 
-
-Description: 123123123 
-
+Committee Member Name : CHERN
+Committee Member Faculty : SCSE
+Committee Member Points : 1
 ---------------------------------------------
-Committee List
------------------
-No commitee members.

@@ -37,7 +37,7 @@ public class StaffReportCommands implements ICommandPackage {
 
 			}
 			for (Student student : camp.getCommitteeList()) {
-				reportWriter.writeStudentInfo(student, fileName);
+				reportWriter.writeCommitteeInfo(student, fileName);
 			}
 			System.out.printf("Successfully generated report at %s\n", fileName);
 		}

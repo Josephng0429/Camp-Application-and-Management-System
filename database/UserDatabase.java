@@ -42,7 +42,6 @@ public class UserDatabase {
 			userDetails.add(user.getPassword());
 			userDetails.add(user.getEmail());
 			userDetails.add(user.getFaculty());
-			userDetails.add(user.getFaculty());
 			if (user instanceof Student) {
 				Student student = (Student) user;
 				int points = student.getPoints();
