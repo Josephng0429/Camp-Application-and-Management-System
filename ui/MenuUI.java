@@ -50,7 +50,7 @@ public class MenuUI {
 			}
 			int index = 0;
 			System.out.println("~~~~~~~~~~~~~~~~");
-			System.out.println(" Staff Options: ");
+			System.out.println("Options:        ");
 			System.out.println("~~~~~~~~~~~~~~~~");
 			for (ICommand command : commandList) {
 				index++;
