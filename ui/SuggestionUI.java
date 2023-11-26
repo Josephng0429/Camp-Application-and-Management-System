@@ -6,7 +6,6 @@ import camp.Camp;
 import database.SuggestionDatabase;
 import suggestion.Suggestion;
 import suggestion.Suggestion.Status;
-import user.Student;
 import user.User;
 import utils.ModifiedScanner;
 
@@ -83,11 +82,7 @@ public class SuggestionUI {
 			System.out.println("Can't delete suggestion as it has already been responded to.");
 			return;
 		}
-		Student student = (Student) suggestion.getSender();
-		Camp camp = suggestion.getCamp();
-		student.removeSuggestion(suggestion);
 		suggestionDatabase.removeSuggestion(suggestion);
-		camp.removeSuggestion(suggestion);
 		System.out.println("Deleted suggestion");
 	}
 

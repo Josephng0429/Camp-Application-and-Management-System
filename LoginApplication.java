@@ -1,8 +1,7 @@
 import utils.ModifiedScanner;
 import database.*;
-import ui.StaffUI;
-import ui.StudentUI;
 import user.*;
+import ui.MenuUI;
 
 public class LoginApplication {
 	static ModifiedScanner scanner = ModifiedScanner.getInstance();
@@ -10,8 +9,7 @@ public class LoginApplication {
 	static CampDatabase campDatabase = CampDatabase.getInstance();
 	static EnquiryDatabase enquiryDatabase = EnquiryDatabase.getInstance();
 	static SuggestionDatabase suggestionDatabase = SuggestionDatabase.getInstance();
-	static StaffUI staffUI = StaffUI.getInstance();
-	static StudentUI studentUI = StudentUI.getInstance();
+	static MenuUI menuUI = MenuUI.getInstance();
 
 	// LOGIN PAGE START
 	public static void main(String[] args) {
@@ -26,19 +24,13 @@ public class LoginApplication {
 			choice = scanner.nextInt();
 			if (choice == 1) {
 				User currentUser = login();
-				// if User is Staff:
-				if (currentUser instanceof Staff) {
-					staffUI.menu((Staff) currentUser);
-				} else if (currentUser instanceof Student) {
-					studentUI.menu((Student) currentUser);
-				}
+				menuUI.menu(currentUser);
 			}
 		} while (choice != 2);
 		userDatabase.saveDatabase();
 		campDatabase.saveDatabase();
 		enquiryDatabase.saveDatabase();
 		suggestionDatabase.saveDatabase();
-
 	}
 
 	public static User login() {

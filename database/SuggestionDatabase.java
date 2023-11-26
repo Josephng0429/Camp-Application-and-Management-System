@@ -28,6 +28,32 @@ public class SuggestionDatabase {
 		loadDatabase();
 	}
 
+	public void addSuggestion(Suggestion suggestion) {
+		suggestionList.add(suggestion);
+	}
+
+	public void removeSuggestion(Suggestion suggestion) {
+		suggestionList.remove(suggestion);
+	}
+
+	public ArrayList<Suggestion> getSuggestionByCamp(Camp camp) {
+		ArrayList<Suggestion> filteredSuggestion = new ArrayList<Suggestion>();
+		for (Suggestion suggestion : suggestionList) {
+			if (suggestion.getCamp() == camp)
+				filteredSuggestion.add(suggestion);
+		}
+		return filteredSuggestion;
+	}
+
+	public ArrayList<Suggestion> getSuggestionBySender(User sender) {
+		ArrayList<Suggestion> filteredSuggestion = new ArrayList<Suggestion>();
+		for (Suggestion suggestion : suggestionList) {
+			if (suggestion.getSender() == sender)
+				filteredSuggestion.add(suggestion);
+		}
+		return filteredSuggestion;
+	}
+
 	public void loadDatabase() {
 		ArrayList<ArrayList<String>> suggestionDetails = csvAdapter.readCSVasArray("./suggestion_list.csv");
 		for (ArrayList<String> suggestionDetail : suggestionDetails) {
@@ -51,8 +77,6 @@ public class SuggestionDatabase {
 			else
 				suggestion = new Suggestion(textBody, sender, replier, status, camp);
 			suggestionList.add(suggestion);
-			camp.addSuggestion(suggestion);
-			sender.addSuggestion(suggestion);
 		}
 	}
 
@@ -77,11 +101,4 @@ public class SuggestionDatabase {
 		csvAdapter.writeCSVfromArray(allSuggestions, "suggestion_list.csv");
 	}
 
-	public void addSuggestion(Suggestion suggestion) {
-		suggestionList.add(suggestion);
-	}
-
-	public void removeSuggestion(Suggestion suggestion) {
-		suggestionList.remove(suggestion);
-	}
 }

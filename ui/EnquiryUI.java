@@ -79,11 +79,7 @@ public class EnquiryUI {
 			System.out.println("Can't delete enquiry it has already been responded to.");
 			return;
 		}
-		Student student = (Student) enquiry.getSender();
-		Camp camp = enquiry.getCamp();
-		student.removeEnquiry(enquiry);
 		enquiryDatabase.removeEnquiry(enquiry);
-		camp.removeEnquiry(enquiry);
 		System.out.println("Deleted Enquiry");
 	}
 

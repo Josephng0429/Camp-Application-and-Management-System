@@ -13,21 +13,17 @@ public class Camp {
 	private int numAttendee = 0;
 	private int numCommittee = 0;
 	private boolean visible = true;
-	private ArrayList<Enquiry> enquiryList = new ArrayList<Enquiry>();
-	private ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
 
 	public Camp(CampInfo campInfo) {
 		this.campInfo = campInfo;
 		this.attendeeList = new ArrayList<>();
 		this.committeeList = new ArrayList<>();
-		this.enquiryList = new ArrayList<>();
 	}
 
 	public Camp(CampInfo campInfo, int numAttendee, int numCommittee, int visible) {
 		this.campInfo = campInfo;
 		this.attendeeList = new ArrayList<>();
 		this.committeeList = new ArrayList<>();
-		this.enquiryList = new ArrayList<>();
 		this.numAttendee = numAttendee;
 		this.numCommittee = numCommittee;
 	}
@@ -72,26 +68,6 @@ public class Camp {
 		return true;
 	}
 
-	public void addEnquiry(Enquiry enquiry) {
-		enquiryList.add(enquiry);
-	}
-
-	public void removeEnquiry(Enquiry enquiry) {
-		enquiryList.remove(enquiry);
-	}
-
-	public void addSuggestion(Suggestion suggestion) {
-		suggestionList.add(suggestion);
-	}
-
-	public void removeSuggestion(Suggestion suggestion) {
-		suggestionList.remove(suggestion);
-	}
-
-	public ArrayList<Suggestion> getSuggestions() {
-		return this.suggestionList;
-	}
-
 	public ArrayList<Student> getCommitteeList() {
 		return committeeList;
 	}
@@ -110,9 +86,5 @@ public class Camp {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
-	}
-
-	public ArrayList<Enquiry> getEnquiryList() {
-		return enquiryList;
 	}
 }

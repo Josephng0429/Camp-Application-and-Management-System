@@ -27,6 +27,32 @@ public class EnquiryDatabase {
 		loadDatabase();
 	}
 
+	public void addEnquiry(Enquiry enquiry) {
+		enquiryList.add(enquiry);
+	}
+
+	public void removeEnquiry(Enquiry enquiry) {
+		enquiryList.remove(enquiry);
+	}
+
+	public ArrayList<Enquiry> getEnquiriesByCamp(Camp camp) {
+		ArrayList<Enquiry> filteredEnquiries = new ArrayList<Enquiry>();
+		for (Enquiry enquiry : enquiryList) {
+			if (enquiry.getCamp() == camp)
+				filteredEnquiries.add(enquiry);
+		}
+		return filteredEnquiries;
+	}
+
+	public ArrayList<Enquiry> getEnquiriesBySender(User sender) {
+		ArrayList<Enquiry> filteredEnquiries = new ArrayList<Enquiry>();
+		for (Enquiry enquiry : enquiryList) {
+			if (enquiry.getSender() == sender)
+				filteredEnquiries.add(enquiry);
+		}
+		return filteredEnquiries;
+	}
+
 	public void loadDatabase() {
 		ArrayList<ArrayList<String>> enquiryDetails = csvAdapter.readCSVasArray("./enquiry_list.csv");
 		for (ArrayList<String> enquiryDetail : enquiryDetails) {
@@ -44,8 +70,6 @@ public class EnquiryDatabase {
 			else
 				enquiry = new Enquiry(textBody, sender, replyBody, replier, camp);
 			enquiryList.add(enquiry);
-			camp.addEnquiry(enquiry);
-			sender.addEnquiry(enquiry);
 		}
 	}
 
@@ -67,13 +91,5 @@ public class EnquiryDatabase {
 			allEnquiries.add(enquiryDetails);
 		}
 		csvAdapter.writeCSVfromArray(allEnquiries, "enquiry_list.csv");
-	}
-
-	public void addEnquiry(Enquiry enquiry) {
-		enquiryList.add(enquiry);
-	}
-
-	public void removeEnquiry(Enquiry enquiry) {
-		enquiryList.remove(enquiry);
 	}
 }
