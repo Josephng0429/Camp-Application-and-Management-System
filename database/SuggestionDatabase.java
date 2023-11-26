@@ -25,7 +25,6 @@ public class SuggestionDatabase {
 	}
 
 	private SuggestionDatabase() {
-		loadDatabase();
 	}
 
 	public void addSuggestion(Suggestion suggestion) {

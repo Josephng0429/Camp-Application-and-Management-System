@@ -43,7 +43,7 @@ public class CsvAdapter {
 	}
 
 	public void writeCSVfromArray(ArrayList<ArrayList<String>> arrayList, String filename) {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, false))) {
 			for (ArrayList<String> row : arrayList) {
 				Iterator<String> iterator = row.iterator();
 				while (iterator.hasNext()) {

@@ -2,7 +2,6 @@ package ui;
 
 import utils.ModifiedScanner;
 import java.util.ArrayList;
-import database.*;
 import user.Staff;
 import user.Student;
 import user.User;
@@ -10,8 +9,6 @@ import commands.*;
 
 public class MenuUI {
 	private static MenuUI staffUI = new MenuUI();
-	static UserDatabase userDatabase = UserDatabase.getInstance();
-	static CampDatabase campDatabase = CampDatabase.getInstance();
 	private static ModifiedScanner scanner = ModifiedScanner.getInstance();
 
 	private MenuUI() {

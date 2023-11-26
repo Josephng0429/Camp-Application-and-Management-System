@@ -24,7 +24,6 @@ public class EnquiryDatabase {
 	}
 
 	private EnquiryDatabase() {
-		loadDatabase();
 	}
 
 	public void addEnquiry(Enquiry enquiry) {

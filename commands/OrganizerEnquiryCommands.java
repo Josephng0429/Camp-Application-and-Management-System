@@ -26,6 +26,10 @@ public class OrganizerEnquiryCommands implements ICommandPackage {
 
 		public void execute(User user) {
 			Camp committeeCamp = user.getOrganizingCamp();
+			if (committeeCamp == null) {
+				System.out.println("You do not have any camps.");
+				return;
+			}
 			ArrayList<Enquiry> enquiryList = enquiryDatabase.getEnquiriesByCamp(committeeCamp);
 			enquiryUI.viewEnquiryList(enquiryList);
 		}
@@ -38,6 +42,10 @@ public class OrganizerEnquiryCommands implements ICommandPackage {
 
 		public void execute(User user) {
 			Camp committeeCamp = user.getOrganizingCamp();
+			if (committeeCamp == null) {
+				System.out.println("You do not have any camps.");
+				return;
+			}
 			ArrayList<Enquiry> committeeEnquiries = enquiryDatabase.getEnquiriesByCamp(committeeCamp);
 			Enquiry selectedEnquiry;
 			if ((selectedEnquiry = enquiryUI.chooseEnquiry(committeeEnquiries)) == null)

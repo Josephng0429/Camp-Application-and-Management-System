@@ -2,7 +2,7 @@ package user;
 
 import camp.*;
 
-public class Staff extends User implements IOwnsCamp {
+public class Staff extends User {
 	private Camp myCamp;
 
 	public Staff(String name, String password, String email, String faculty) {

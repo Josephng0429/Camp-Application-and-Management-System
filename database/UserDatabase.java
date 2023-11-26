@@ -17,7 +17,6 @@ public class UserDatabase {
 	}
 
 	private UserDatabase() {
-		loadDatabase();
 	}
 
 	public void loadDatabase() {

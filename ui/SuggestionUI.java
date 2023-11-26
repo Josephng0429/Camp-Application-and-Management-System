@@ -54,6 +54,10 @@ public class SuggestionUI {
 
 	public Suggestion chooseSuggestion(ArrayList<Suggestion> suggestions) {
 		int index = 0;
+		if (suggestions.size() == 0) {
+			System.out.println("No suggestions to choose form.");
+			return null;
+		}
 		for (Suggestion suggestion : suggestions) {
 			index++;
 			System.out.printf("---------\nChoice %d:\n---------\n", index);
@@ -119,6 +123,10 @@ public class SuggestionUI {
 	}
 
 	public void viewSuggestionList(ArrayList<Suggestion> suggestionList) {
+		if (suggestionList.size() == 0) {
+			System.out.println("No suggestions to choose see.");
+			return;
+		}
 		for (Suggestion suggestion : suggestionList) {
 			viewSuggestion(suggestion);
 		}

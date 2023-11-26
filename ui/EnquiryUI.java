@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import camp.Camp;
 import database.EnquiryDatabase;
 import enquiry.Enquiry;
-import user.Student;
 import user.User;
 import utils.ModifiedScanner;
 
@@ -51,6 +50,10 @@ public class EnquiryUI {
 
 	public Enquiry chooseEnquiry(ArrayList<Enquiry> enquiries) {
 		int index = 0;
+		if (enquiries.size() == 0) {
+			System.out.println("No enquiries to see.");
+			return null;
+		}
 		for (Enquiry enquiry : enquiries) {
 			index++;
 			System.out.printf("---------\nChoice %d:\n---------\n", index);
@@ -96,6 +99,10 @@ public class EnquiryUI {
 	}
 
 	public void viewEnquiryList(ArrayList<Enquiry> enquiryList) {
+		if (enquiryList.size() == 0) {
+			System.out.println("No enquiries to see.");
+			return;
+		}
 		for (Enquiry enquiry : enquiryList) {
 			viewEnquiry(enquiry);
 		}

@@ -109,12 +109,15 @@ public class StudentCampCommands implements ICommandPackage {
 		public void execute(User user) {
 			Student currentStudent = (Student) user;
 			ArrayList<Camp> myCamps = currentStudent.getMyCamps();
+			System.out.println("------------------------------");
+			System.out.println("Choose a camp to withdraw from");
+			System.out.println("------------------------------");
 			Camp selectedCamp;
 			if ((selectedCamp = campUI.chooseCamp(myCamps)) == null)
 				return;
-			System.out.println("------------------");
+			System.out.println("-----------");
 			System.out.println("Options: ");
-			System.out.println("------------------");
+			System.out.println("-----------");
 			System.out.println("(0) Exit");
 			System.out.println("(1) Withdraw from Camp");
 			System.out.print("Select an option: ");

@@ -68,17 +68,17 @@ public class CampUI {
 		int campCommitteeSlots;
 		System.out.println("Creating a camp");
 		while (true) {
-			System.out.println("Enter camp name:");
+			System.out.print("Enter camp name: ");
 			campName = scanner.nextLine();
 			if (campDatabase.getCampByName(campName) != null)
 				System.out.println("Camp name has been taken");
 			else
 				break;
 		}
-		System.out.println("For the camp start date");
+		System.out.println("For the camp start date:");
 		campStartDate = scanner.nextLocalDate();
 		while (true) {
-			System.out.println("For the camp end date");
+			System.out.println("For the camp end date:");
 			campEndDate = scanner.nextLocalDate();
 			if (campEndDate.isBefore(campStartDate))
 				System.out.println("Camp end date must be after the camp start date");
@@ -86,19 +86,19 @@ public class CampUI {
 				break;
 		}
 		while (true) {
-			System.out.println("For the camp registration closing date");
+			System.out.println("For the camp registration closing date:");
 			campClosingDate = scanner.nextLocalDate();
 			if (campClosingDate.isAfter(campStartDate))
 				System.out.println("Camp registration closing date must be before the camp start date");
 			else
 				break;
 		}
-		System.out.println("Enter camp faculty (type all if no preference)");
+		System.out.print("Enter camp faculty (type all if no preference): ");
 		String campFaculty = scanner.nextLine();
-		System.out.println("Enter camp location");
+		System.out.print("Enter camp location: ");
 		String campLocation = scanner.nextLine();
 		while (true) {
-			System.out.println("Enter camp total slots");
+			System.out.print("Enter camp total slots: ");
 			campTotalSlots = scanner.nextInt();
 			if (campTotalSlots < 0)
 				System.out.println("Invalid camp slots");
@@ -106,7 +106,7 @@ public class CampUI {
 				break;
 		}
 		while (true) {
-			System.out.println("Enter camp committee slots");
+			System.out.print("Enter camp committee slots: ");
 			campCommitteeSlots = scanner.nextInt();
 			if (campCommitteeSlots >= campTotalSlots)
 				System.out.println("Committee slots should be lesser than total slots");
@@ -115,7 +115,7 @@ public class CampUI {
 			else
 				break;
 		}
-		System.out.println("Enter camp description");
+		System.out.print("Enter camp description: ");
 		String campDescription = scanner.nextLine();
 		Staff campStaffInCharge = currentStaff;
 		CampInfo newCampInfo = new CampInfo(
@@ -154,37 +154,37 @@ public class CampUI {
 		CampInfo campInfo = camp.getCampInfo();
 		switch (input) {
 			case 1:
-				System.out.println("Input camp name");
+				System.out.print("Input new camp name: ");
 				String campName = scanner.nextLine();
 				campInfo.setCampName(campName);
 				break;
 			case 2:
-				System.out.println("Input start date:");
+				System.out.print("Input new start date: ");
 				LocalDate startDate = scanner.nextLocalDate();
 				campInfo.setStartDate(startDate);
 				break;
 			case 3:
-				System.out.println("Input end date:");
+				System.out.print("Input new end date: ");
 				LocalDate endDate = scanner.nextLocalDate();
 				campInfo.setEndDate(endDate);
 				break;
 			case 4:
-				System.out.println("Input registration closing date:");
+				System.out.print("Input new registration closing date: ");
 				LocalDate closingDate = scanner.nextLocalDate();
 				campInfo.setRegCloseDate(closingDate);
 				break;
 			case 5:
-				System.out.print("Input new faculty");
+				System.out.print("Input new faculty: ");
 				String faculty = scanner.nextLine();
 				campInfo.setCampFaculty(faculty);
 				break;
 			case 6:
-				System.out.print("Input new location");
+				System.out.print("Input new location: ");
 				String location = scanner.nextLine();
 				campInfo.setLocation(location);
 				break;
 			case 7:
-				System.out.print("Input new total slots");
+				System.out.print("Input new total slots: ");
 				int newTotalSlots = scanner.nextInt();
 				int committeeSlots = campInfo.getNumCommitteeSlots();
 				if (committeeSlots >= newTotalSlots)
@@ -194,7 +194,7 @@ public class CampUI {
 				}
 				break;
 			case 8:
-				System.out.print("Input new committee slots");
+				System.out.print("Input new committee slots: ");
 				int newCommitteeSlots = scanner.nextInt();
 				int totalSlots = campInfo.getNumCommitteeSlots() + campInfo.getNumAttendeeSlots();
 				if (newCommitteeSlots >= totalSlots)
@@ -204,7 +204,7 @@ public class CampUI {
 				}
 				break;
 			case 9:
-				System.out.print("Input new description");
+				System.out.print("Input new description: ");
 				String description = scanner.nextLine();
 				campInfo.setDescription(description);
 				break;
@@ -217,6 +217,10 @@ public class CampUI {
 	}
 
 	public void viewCampList(ArrayList<Camp> campList) {
+		if (campList.size() == 0) {
+			System.out.println("No camps to see");
+			return;
+		}
 		int index = 0;
 		for (Camp camp : campList) {
 			index++;
@@ -226,6 +230,10 @@ public class CampUI {
 	}
 
 	public Camp chooseCamp(ArrayList<Camp> camps) {
+		if (camps.size() == 0) {
+			System.out.println("No camps to choose from");
+			return null;
+		}
 		int index = 0;
 		for (Camp camp : camps) {
 			index++;

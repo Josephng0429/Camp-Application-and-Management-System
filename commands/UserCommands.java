@@ -20,6 +20,9 @@ public class UserCommands implements ICommandPackage {
 		}
 
 		public void execute(User user) {
+			System.out.println("-----------------");
+			System.out.println("Changing password");
+			System.out.println("-----------------");
 			System.out.print("Enter new password: ");
 			String newPassword = scanner.nextLine();
 			while (true) {

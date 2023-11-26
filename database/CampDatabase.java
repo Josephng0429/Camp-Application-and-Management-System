@@ -22,8 +22,6 @@ public class CampDatabase {
 	}
 
 	private CampDatabase() {
-		// Initialize Camps
-		loadDatabase();
 	}
 
 	public void loadDatabase() {
@@ -39,6 +37,10 @@ public class CampDatabase {
 			int committeeSlots = Integer.parseInt(campDetail.get(7));
 			String description = campDetail.get(8);
 			Staff staffInCharge = (Staff) userDatabase.getUserByID(campDetail.get(9));
+			Boolean visiblity = true;
+			if (campDetail.get(10).equals("false")) {
+				visiblity = false;
+			}
 			CampInfo newCampInfo = new CampInfo(
 					name,
 					startDate,
@@ -51,6 +53,7 @@ public class CampDatabase {
 					description,
 					staffInCharge);
 			Camp newCamp = new Camp(newCampInfo);
+			newCamp.setVisible(visiblity);
 			campList.add(newCamp);
 			staffInCharge.setOrganizingCamp(newCamp);
 		}
@@ -86,6 +89,10 @@ public class CampDatabase {
 			campDetails.add(Integer.toString(campInfo.getNumCommitteeSlots()));
 			campDetails.add(campInfo.getDescription());
 			campDetails.add(campInfo.getStaffInCharge().getUserID());
+			if (camp.isVisible())
+				campDetails.add("true");
+			else
+				campDetails.add("false");
 			allCampDetails.add(campDetails);
 			// To store member details
 			for (User attendee : camp.getAttendeeList()) {

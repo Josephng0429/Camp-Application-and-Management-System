@@ -13,6 +13,11 @@ public class LoginApplication {
 
 	// LOGIN PAGE START
 	public static void main(String[] args) {
+		userDatabase.loadDatabase();
+		campDatabase.loadDatabase();
+		enquiryDatabase.loadDatabase();
+		suggestionDatabase.loadDatabase();
+
 		int choice = 0;
 		do {
 			System.out.println("*********************************************");

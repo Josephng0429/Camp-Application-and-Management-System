@@ -15,21 +15,25 @@ public class StaffCampCommands implements ICommandPackage {
 
 	public ArrayList<ICommand> getCommands() {
 		ArrayList<ICommand> commandList = new ArrayList<ICommand>();
-		commandList.add(new createCamp());
-		commandList.add(new viewMyCamps());
-		commandList.add(new viewAllCamps());
-		commandList.add(new deleteCamp());
-		commandList.add(new editCamp());
-		commandList.add(new setCampVisibility());
+		commandList.add(new CreateCamp());
+		commandList.add(new ViewMyCamp());
+		commandList.add(new ViewAllCamps());
+		commandList.add(new DeleteCamp());
+		commandList.add(new EditCamp());
+		commandList.add(new SetCampVisibility());
 		return commandList;
 	}
 
-	public class createCamp implements ICommand {
+	public class CreateCamp implements ICommand {
 		public void printOption() {
 			System.out.println("Create camp");
 		}
 
 		public void execute(User user) {
+			if (user.getOrganizingCamp() != null) {
+				System.out.println("You can only create one camp.");
+				return;
+			}
 			Staff currentStaff = (Staff) user;
 			Camp newCamp = campUI.createCamp(currentStaff);
 			currentStaff.setOrganizingCamp(newCamp);
@@ -39,18 +43,22 @@ public class StaffCampCommands implements ICommandPackage {
 
 	}
 
-	public class viewMyCamps implements ICommand {
+	public class ViewMyCamp implements ICommand {
 		public void printOption() {
-			System.out.println("View my camps");
+			System.out.println("View my camp");
 		}
 
 		public void execute(User user) {
+			if (user.getOrganizingCamp() == null) {
+				System.out.println("You do not have any camps.");
+				return;
+			}
 			Camp myCamp = user.getOrganizingCamp();
 			campUI.viewCamp(myCamp);
 		}
 	}
 
-	public class viewAllCamps implements ICommand {
+	public class ViewAllCamps implements ICommand {
 		public void printOption() {
 			System.out.println("View all camps");
 		}
@@ -61,13 +69,17 @@ public class StaffCampCommands implements ICommandPackage {
 		}
 	}
 
-	public class editCamp implements ICommand {
+	public class EditCamp implements ICommand {
 		public void printOption() {
 			System.out.println("Edit camps");
 
 		}
 
 		public void execute(User user) {
+			if (user.getOrganizingCamp() == null) {
+				System.out.println("You do not have any camps.");
+				return;
+			}
 			Staff currentStaff = (Staff) user;
 			Camp camp = currentStaff.getOrganizingCamp();
 			campUI.editCamp(camp);
@@ -75,13 +87,17 @@ public class StaffCampCommands implements ICommandPackage {
 		}
 	}
 
-	public class deleteCamp implements ICommand {
+	public class DeleteCamp implements ICommand {
 		public void printOption() {
 			System.out.println("Delete camp");
 
 		}
 
 		public void execute(User user) {
+			if (user.getOrganizingCamp() == null) {
+				System.out.println("You do not have any camps.");
+				return;
+			}
 			Staff staff = (Staff) user;
 			Camp camp = user.getOrganizingCamp();
 			if (camp.getNumAttendee() > 0 || camp.getNumCommittee() > 0) {
@@ -95,12 +111,16 @@ public class StaffCampCommands implements ICommandPackage {
 		}
 	}
 
-	public class setCampVisibility implements ICommand {
+	public class SetCampVisibility implements ICommand {
 		public void printOption() {
 			System.out.println("Set camp visibility");
 		}
 
 		public void execute(User user) {
+			if (user.getOrganizingCamp() == null) {
+				System.out.println("You do not have any camps.");
+				return;
+			}
 			Camp myCamp = user.getOrganizingCamp();
 			campUI.setCampVisibility(myCamp);
 		}
