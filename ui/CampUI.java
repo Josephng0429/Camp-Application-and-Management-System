@@ -133,10 +133,6 @@ public class CampUI {
 	}
 
 	public void editCamp(Camp camp) {
-		if (camp.getNumAttendee() > 0 || camp.getNumCommittee() > 0) {
-			System.out.println("Can't modify camp as people have joined.");
-			return;
-		}
 		System.out.println("------------------");
 		System.out.println(" Edit Options: ");
 		System.out.println("------------------");
